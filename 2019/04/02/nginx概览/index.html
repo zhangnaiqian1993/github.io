@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="nginx,">
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="My footprints in backend developing">
-<meta name="keywords" content="php,go,mysql,unix,data structure">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhangnaiqian&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="性能介绍 32核64g可以达到数千万并发连接   简单的静态资源链接可以达到100万RPS（每秒能处理的请求数目）    版本发布 每个版本发布分为三部分，feature表示新功能发布，bugfix表示修复了哪些bug，change表示重构了哪些功能      版本号单号版本（大版本号）表示主干版本，新增很多功能，但并不代表稳定版本，双号版本是稳定版本     特别提示如果你对apache和ngi">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx概览">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/nginx概览/index.html">
 <meta property="og:site_name" content="Zhangnaiqian&#39;s Blog">
-<meta property="og:description" content="My footprints in backend developing">
+<meta property="og:description" content="性能介绍 32核64g可以达到数千万并发连接   简单的静态资源链接可以达到100万RPS（每秒能处理的请求数目）    版本发布 每个版本发布分为三部分，feature表示新功能发布，bugfix表示修复了哪些bug，change表示重构了哪些功能      版本号单号版本（大版本号）表示主干版本，新增很多功能，但并不代表稳定版本，双号版本是稳定版本     特别提示如果你对apache和ngi">
 <meta property="og:locale" content="en-us">
+<meta property="og:image" content="http://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG43.jpeg">
+<meta property="og:image" content="http://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG42.jpeg">
+<meta property="og:updated_time" content="2019-04-02T15:08:47.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhangnaiqian&#39;s Blog">
-<meta name="twitter:description" content="My footprints in backend developing">
+<meta name="twitter:title" content="nginx概览">
+<meta name="twitter:description" content="性能介绍 32核64g可以达到数千万并发连接   简单的静态资源链接可以达到100万RPS（每秒能处理的请求数目）    版本发布 每个版本发布分为三部分，feature表示新功能发布，bugfix表示修复了哪些bug，change表示重构了哪些功能      版本号单号版本（大版本号）表示主干版本，新增很多功能，但并不代表稳定版本，双号版本是稳定版本     特别提示如果你对apache和ngi">
+<meta name="twitter:image" content="http://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG43.jpeg">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/02/nginx概览/">
 
 
 
 
 
-  <title>Archive | Zhangnaiqian's Blog</title>
+  <title>nginx概览 | Zhangnaiqian's Blog</title>
   
 
 
@@ -144,7 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,72 +274,177 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 1 post. Keep on posting.
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/nginx概览/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张乃千">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhangnaiqian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/02/nginx概览/" itemprop="url">
-              
-                <span itemprop="name">nginx概览</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">nginx概览</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-02T23:02:25+08:00" content="2019-04-02">
-          04-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T23:02:25+08:00">
+                2019-04-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/02/nginx概览/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/02/nginx概览/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="性能介绍"><a href="#性能介绍" class="headerlink" title="性能介绍"></a>性能介绍</h3><ul>
+<li><p>32核64g可以达到数千万并发连接 </p>
+</li>
+<li><p>简单的静态资源链接可以达到100万RPS（每秒能处理的请求数目） </p>
+</li>
+</ul>
+<h3 id="版本发布"><a href="#版本发布" class="headerlink" title="版本发布"></a>版本发布</h3><ul>
+<li>每个版本发布分为三部分，feature表示新功能发布，bugfix表示修复了哪些bug，change表示重构了哪些功能 </li>
+</ul>
+<p><img src="http://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG43.jpeg" alt="nginx changelog"> </p>
+<ul>
+<li>版本号单号版本（大版本号）表示主干版本，新增很多功能，但并不代表稳定版本，双号版本是稳定版本 </li>
+</ul>
+<p><img src="http://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG42.jpeg" alt="nginx downloadpage"> </p>
+<h3 id="特别提示"><a href="#特别提示" class="headerlink" title="特别提示"></a>特别提示</h3><p>如果你对apache和nginx的性能在windows下执行测试的话，可能发现nginx的效率还不如apache，产生这个问题的原因是nginx在windows平台下采用的是select方法处理文件描述符，而不是epoll，因此nginx在linux环境下才能发挥最大性能 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
-    </div>
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -343,6 +452,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -363,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -424,6 +549,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能介绍"><span class="nav-number">1.</span> <span class="nav-text">性能介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本发布"><span class="nav-number">2.</span> <span class="nav-text">版本发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特别提示"><span class="nav-number">3.</span> <span class="nav-text">特别提示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -567,6 +708,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

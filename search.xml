@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[nginx概览]]></title>
+    <url>%2F2019%2F04%2F02%2Fnginx%E6%A6%82%E8%A7%88%2F</url>
+    <content type="text"><![CDATA[性能介绍 32核64g可以达到数千万并发连接 简单的静态资源链接可以达到100万RPS（每秒能处理的请求数目） 版本发布 每个版本发布分为三部分，feature表示新功能发布，bugfix表示修复了哪些bug，change表示重构了哪些功能 版本号单号版本（大版本号）表示主干版本，新增很多功能，但并不代表稳定版本，双号版本是稳定版本 特别提示如果你对apache和nginx的性能在windows下执行测试的话，可能发现nginx的效率还不如apache，产生这个问题的原因是nginx在windows平台下采用的是select方法处理文件描述符，而不是epoll，因此nginx在linux环境下才能发挥最大性能]]></content>
+      <categories>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+</search>
