@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="nginx,">
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="My footprints in backend developing">
-<meta name="keywords" content="php,go,mysql,unix,data structure">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhangnaiqian&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/nginx/index.html">
+<meta name="description" content="为什么编译Nginx不用yum apt 因为Nginx需要将模块编译到可执行文件，如果用yum install等，直接生成可执行文件，没法自定义模块  Nginx源码目录结构  auto目录：主要为configure脚本进行服务，检查操作系统支持，检查标准库版本等等 CHANGES文件：主要介绍nginx版本特性，每秒能处理的请求数目 conf目录：里面为示例配置文件，安装之后拷贝到安装目录，可以">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx安装">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/nginx安装/index.html">
 <meta property="og:site_name" content="Zhangnaiqian&#39;s Blog">
-<meta property="og:description" content="My footprints in backend developing">
+<meta property="og:description" content="为什么编译Nginx不用yum apt 因为Nginx需要将模块编译到可执行文件，如果用yum install等，直接生成可执行文件，没法自定义模块  Nginx源码目录结构  auto目录：主要为configure脚本进行服务，检查操作系统支持，检查标准库版本等等 CHANGES文件：主要介绍nginx版本特性，每秒能处理的请求数目 conf目录：里面为示例配置文件，安装之后拷贝到安装目录，可以">
 <meta property="og:locale" content="en-us">
+<meta property="og:image" content="https://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG14.jpeg">
+<meta property="og:image" content="https://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG40.jpeg">
+<meta property="og:updated_time" content="2019-04-02T15:16:28.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhangnaiqian&#39;s Blog">
-<meta name="twitter:description" content="My footprints in backend developing">
+<meta name="twitter:title" content="nginx安装">
+<meta name="twitter:description" content="为什么编译Nginx不用yum apt 因为Nginx需要将模块编译到可执行文件，如果用yum install等，直接生成可执行文件，没法自定义模块  Nginx源码目录结构  auto目录：主要为configure脚本进行服务，检查操作系统支持，检查标准库版本等等 CHANGES文件：主要介绍nginx版本特性，每秒能处理的请求数目 conf目录：里面为示例配置文件，安装之后拷贝到安装目录，可以">
+<meta name="twitter:image" content="https://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG14.jpeg">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/nginx/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/02/nginx安装/">
 
 
 
 
 
-  <title>Category: nginx | Zhangnaiqian's Blog</title>
+  <title>nginx安装 | Zhangnaiqian's Blog</title>
   
 
 
@@ -144,7 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,105 +274,210 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>nginx<small>Category</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/nginx安装/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张乃千">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhangnaiqian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/02/nginx配置/" itemprop="url">
-              
-                <span itemprop="name">nginx配置</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">nginx安装</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-02T23:13:54+08:00" content="2019-04-02">
-          04-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T23:13:38+08:00">
+                2019-04-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/02/nginx安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/02/nginx安装/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/02/nginx安装/" itemprop="url">
-              
-                <span itemprop="name">nginx安装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-02T23:13:38+08:00" content="2019-04-02">
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/02/nginx概览/" itemprop="url">
-              
-                <span itemprop="name">nginx概览</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-02T23:02:25+08:00" content="2019-04-02">
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h3 id="为什么编译Nginx不用yum-apt"><a href="#为什么编译Nginx不用yum-apt" class="headerlink" title="为什么编译Nginx不用yum apt"></a>为什么编译Nginx不用yum apt</h3><ul>
+<li>因为Nginx需要将模块编译到可执行文件，如果用yum install等，直接生成可执行文件，没法自定义模块</li>
+</ul>
+<h3 id="Nginx源码目录结构"><a href="#Nginx源码目录结构" class="headerlink" title="Nginx源码目录结构"></a>Nginx源码目录结构</h3><p><img src="https://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG14.jpeg" alt="avatar"></p>
+<ul>
+<li>auto目录：主要为configure脚本进行服务，检查操作系统支持，检查标准库版本等等</li>
+<li>CHANGES文件：主要介绍nginx版本特性，每秒能处理的请求数目</li>
+<li>conf目录：里面为示例配置文件，安装之后拷贝到安装目录，可以让大家作为标准配置文件参考修改</li>
+<li>configure文件就不说了，编译前配置</li>
+<li><p>contrib目录：这个目录很有意思，可以让你的vim支持nginx语法高亮，用法为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp -r contrib/vim/* ~/.vim/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html目录：提供了两个示例html，welcome页面和5xx错误页面</p>
+</li>
+<li>man文件：提供帮助文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man ./nginx.8</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>里面有nginx基本的帮助和配置</p>
+<ul>
+<li>src目录：里面放nginx源代码</li>
+</ul>
+<h3 id="Nginx的configure参数"><a href="#Nginx的configure参数" class="headerlink" title="Nginx的configure参数"></a>Nginx的configure参数</h3><ul>
+<li>环境配置：配置nginx的一些path目录，告诉编译器去哪里找nginx相关目录，其中最主要的就是prefix，这相当于nginx的安装根目录，一般我们指定prefix，其他的目录会根据这个根目录延伸的去找</li>
+<li>模块配置：一些with参数指引我们编译进去哪些模块，一些without参数指引我们不编译哪些模块。一般without的模块都是nginx默认安装的，with的模块都是默认没有的</li>
+<li>特殊参数配置：一些优化参数，或者开启debug日志等等</li>
+</ul>
+<h3 id="configure执行完成后的中间文件"><a href="#configure执行完成后的中间文件" class="headerlink" title="configure执行完成后的中间文件"></a>configure执行完成后的中间文件</h3><p>configure执行完成后，中间文件都存放于objs目录下，<br><img src="https://naiqianz.oss-cn-beijing.aliyuncs.com/notes/WechatIMG40.jpeg" alt="objs dir"><br>其中ngx_modules里面存有所有即将被nginx编译进去的模块。</p>
+<h3 id="make后的二进制文件"><a href="#make后的二进制文件" class="headerlink" title="make后的二进制文件"></a>make后的二进制文件</h3><p>make编译执行后，objs出现可执行文件，如果要将nginx升级的话拷贝可执行文件到现在的nginx目录，然后执行kill -usr2 ${pid}指令即可，注意备份之前的可执行文件</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/02/nginx概览/" rel="next" title="nginx概览">
+                <i class="fa fa-chevron-left"></i> nginx概览
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/02/nginx配置/" rel="prev" title="nginx配置">
+                nginx配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -376,6 +485,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -396,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -457,6 +582,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么编译Nginx不用yum-apt"><span class="nav-number">1.</span> <span class="nav-text">为什么编译Nginx不用yum apt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx源码目录结构"><span class="nav-number">2.</span> <span class="nav-text">Nginx源码目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx的configure参数"><span class="nav-number">3.</span> <span class="nav-text">Nginx的configure参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#configure执行完成后的中间文件"><span class="nav-number">4.</span> <span class="nav-text">configure执行完成后的中间文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#make后的二进制文件"><span class="nav-number">5.</span> <span class="nav-text">make后的二进制文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -600,6 +741,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

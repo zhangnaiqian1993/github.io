@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[nginx配置]]></title>
+    <url>%2F2019%2F04%2F02%2Fnginx%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[Nginx配置语法 配置文件由指令与指令块组成 每条指令以;分好结尾，指令与参数间以空格符号分割 指令块以{}大括号将多条指令组织在一起 include语句允许组合多个配置文件以提升可维护性 使用#添加注释，提高可读性 使用$符号使用变量 部分指令的参数支持正则表达式需要注意的是，每个指令块实际对应的是ngx_module们，所以相关语法可以查询nginx module的相关文档 配置文件示例123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138user www www;worker_processes 2; error_log logs/error.log;#error_log logs/error.log notice;#error_log logs/error.log info; pid logs/nginx.pid; events &#123; #epoll是多路复用IO(I/O Multiplexing)中的一种方式, #仅用于linux2.6以上内核,可以大大提高nginx的性能 use epoll; #单个后台worker process进程的最大并发链接数 worker_connections 1024; # 并发总数是 worker_processes 和 worker_connections 的乘积 # 即 max_clients = worker_processes * worker_connections # 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4 为什么 # 为什么上面反向代理要除以4，应该说是一个经验值 # 根据以上条件，正常情况下的Nginx Server可以应付的最大连接数为：4 * 8000 = 32000 # worker_connections 值的设置跟物理内存大小有关 # 因为并发受IO约束，max_clients的值须小于系统可以打开的最大文件数 # 而系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右 # 我们来看看360M内存的VPS可以打开的文件句柄数是多少： # $ cat /proc/sys/fs/file-max # 输出 34336 # 32000 &lt; 34336，即并发连接总数小于系统可以打开的文件句柄总数，这样就在操作系统可以承受的范围之内 # 所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置 # 使得并发总数小于操作系统可以打开的最大文件数目 # 其实质也就是根据主机的物理CPU和内存进行配置 # 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。 # ulimit -SHn 65535&#125; http &#123; include mime.types; default_type application/octet-stream; #log_format main &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos; # &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos; # &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;; #access_log logs/access.log main; sendfile on; # tcp_nopush on; keepalive_timeout 65; # gzip压缩功能设置 gzip on; gzip_min_length 1k; gzip_buffers 4 16k; gzip_http_version 1.0; gzip_comp_level 6; gzip_types text/html text/plain text/css text/javascript application/json application/javascript application/x-javascript application/xml; gzip_vary on; # http_proxy 设置 client_max_body_size 10m; client_body_buffer_size 128k; proxy_connect_timeout 75; proxy_send_timeout 75; proxy_read_timeout 75; proxy_buffer_size 4k; proxy_buffers 4 32k; proxy_busy_buffers_size 64k; proxy_temp_file_write_size 64k; proxy_temp_path /usr/local/nginx/proxy_temp 1 2; # 设定负载均衡后台服务器列表 upstream backend &#123; #ip_hash; server 192.168.10.100:8080 max_fails=2 fail_timeout=30s ; server 192.168.10.101:8080 max_fails=2 fail_timeout=30s ; &#125; # 很重要的虚拟主机配置 server &#123; listen 80; server_name itoatest.example.com; root /apps/oaapp; charset utf-8; access_log logs/host.access.log main; #对 / 所有做负载均衡+反向代理 location / &#123; root /apps/oaapp; index index.jsp index.html index.htm; proxy_pass http://backend; proxy_redirect off; # 后端的Web服务器可以通过X-Forwarded-For获取用户真实IP proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504; &#125; #静态文件，nginx自己处理，不去backend请求tomcat location ~* /download/ &#123; root /apps/oa/fs; &#125; location ~ .*\.(gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ &#123; root /apps/oaapp; expires 7d; &#125; location /nginx_status &#123; stub_status on; access_log off; allow 192.168.10.0/24; deny all; &#125; location ~ ^/(WEB-INF)/ &#123; deny all; &#125; #error_page 404 /404.html; # redirect server error pages to the static page /50x.html # error_page 500 502 503 504 /50x.html; location = /50x.html &#123; root html; &#125; &#125; ## 其它虚拟主机，server 指令开始&#125;]]></content>
+      <categories>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nginx安装]]></title>
+    <url>%2F2019%2F04%2F02%2Fnginx%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[为什么编译Nginx不用yum apt 因为Nginx需要将模块编译到可执行文件，如果用yum install等，直接生成可执行文件，没法自定义模块 Nginx源码目录结构 auto目录：主要为configure脚本进行服务，检查操作系统支持，检查标准库版本等等 CHANGES文件：主要介绍nginx版本特性，每秒能处理的请求数目 conf目录：里面为示例配置文件，安装之后拷贝到安装目录，可以让大家作为标准配置文件参考修改 configure文件就不说了，编译前配置 contrib目录：这个目录很有意思，可以让你的vim支持nginx语法高亮，用法为 1$ cp -r contrib/vim/* ~/.vim/ html目录：提供了两个示例html，welcome页面和5xx错误页面 man文件：提供帮助文件1$ man ./nginx.8 里面有nginx基本的帮助和配置 src目录：里面放nginx源代码 Nginx的configure参数 环境配置：配置nginx的一些path目录，告诉编译器去哪里找nginx相关目录，其中最主要的就是prefix，这相当于nginx的安装根目录，一般我们指定prefix，其他的目录会根据这个根目录延伸的去找 模块配置：一些with参数指引我们编译进去哪些模块，一些without参数指引我们不编译哪些模块。一般without的模块都是nginx默认安装的，with的模块都是默认没有的 特殊参数配置：一些优化参数，或者开启debug日志等等 configure执行完成后的中间文件configure执行完成后，中间文件都存放于objs目录下，其中ngx_modules里面存有所有即将被nginx编译进去的模块。 make后的二进制文件make编译执行后，objs出现可执行文件，如果要将nginx升级的话拷贝可执行文件到现在的nginx目录，然后执行kill -usr2 ${pid}指令即可，注意备份之前的可执行文件]]></content>
+      <categories>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[nginx概览]]></title>
     <url>%2F2019%2F04%2F02%2Fnginx%E6%A6%82%E8%A7%88%2F</url>
     <content type="text"><![CDATA[性能介绍 32核64g可以达到数千万并发连接 简单的静态资源链接可以达到100万RPS（每秒能处理的请求数目） 版本发布 每个版本发布分为三部分，feature表示新功能发布，bugfix表示修复了哪些bug，change表示重构了哪些功能 版本号单号版本（大版本号）表示主干版本，新增很多功能，但并不代表稳定版本，双号版本是稳定版本 特别提示如果你对apache和nginx的性能在windows下执行测试的话，可能发现nginx的效率还不如apache，产生这个问题的原因是nginx在windows平台下采用的是select方法处理文件描述符，而不是epoll，因此nginx在linux环境下才能发挥最大性能]]></content>
