@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[docker网络通信原理]]></title>
-    <url>%2F2019%2F09%2F18%2Fnginx%E5%AE%89%E8%A3%85%2F</url>
+    <url>%2F2019%2F09%2F18%2Fdocker%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%2F</url>
     <content type="text"><![CDATA[关于docker的网络原理Linux namespacedocker的核心思想就是利用linux的namespace技术隔离进程id,文件系统以及网络等资源。用命令 ip netns add ns1 ip netns add ns2可以添加名称为ns1,ns2的虚拟空间，我们这里单说网络，这时会分别给ns1和ns2一个单独的虚拟网卡 veth-pair当我们两个隔离的namespace想通信时，可以建立一组veth-pair来连接两个namespaceveth-pair在物理上相当于一根网线，在程序上比较类似于pipe管道，主要作用就是打通两个网络设备: 可以用命令 ip link add test1 type veth peer name veth-test1-peer创建一对veth-pair 然后分别添加到两个namespace中 ip link set veth-test1 netns ns1 ip link set veth-test1-peer netns ns2 还需要给这对veth分配ip地址 ip addr add 192.168.1.1/24 dev veth-test1 ip addr add 192.168.1.2/24 dev veth-test1-peer 最后启动这对veth-pair ip netns exec ns1 ip link set dev veth-test1 up ip netns exec ns2 ip link set dev veth-test1-peer up 这时这两个namespace间就能相互通信啦 ip netns exec ns1 ping 192.168.1.2从ns1可以ping通ns2 Linux bridge但是我们一台linux启动的多个docker其实都是可以互相ping通的，如果两两连接非累死不可，因此运用了linux bridge技术，linux bridge相当于虚拟交换机，不同的ns下的docker分别用veth-pair连接到一个默认为docker0的linux bridge中，所以这些容器在这个“交换机”下面是可以互相访问的，而访问外网时，这个linux bridge用iptables实现nat技术访问你的真实网卡eth0。 和物理层不同设备插线到一个路由器，路由器在nat访问统一访问外网是一个道理，由此可见，软件真的充斥着不少硬件解决方案的抽象。]]></content>
       <categories>
         <category>docker</category>
